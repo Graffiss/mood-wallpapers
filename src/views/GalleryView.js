@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import cx from 'classnames';
-import styles from './GalleryView.module.scss';
-import yellowCity from '../assets/images/yellow-city.jpg';
 import { fetchData } from '../api/api';
+import GalleryTemple from '../template/GalleryTemplate';
+import PhotoItem from '../components/molecules/PhotoItem/PhotoItem';
+import './styles.css';
 
 const GalleryView = () => {
   const [photos, setPhotos] = useState([]);
@@ -10,37 +11,22 @@ const GalleryView = () => {
   useEffect(() => {
     fetchData(setPhotos);
   }, []);
-
   return (
-    <div className={cx(styles.view, 'tile is-ancestor container is-fluid')}>
-      <div className="tile is-vertical">
-        <div className="tile">
-          <div className="tile is-parent is-vertical">
-            <div className="tile is-child box">
-              <img src={yellowCity} alt="" className={styles.image} />
-            </div>
-            <div className="tile is-child box">
-              <img src={yellowCity} alt="" className={styles.image} />
-            </div>
+    <GalleryTemple>
+      {photos.length === 0 ? (
+        <p>Loading data from server...</p>
+      ) : (
+        photos.map((photo) => (
+          <div className={`div${photos.indexOf(photo)}`}>
+            <PhotoItem
+              image={photo.urls.regular}
+              desc={photo.alt_description}
+              author={photo.user.name}
+            />
           </div>
-          <div className="tile is-parent">
-            <div className="tile is-child box">
-              <img src={yellowCity} alt="" className={styles.image} />
-            </div>
-          </div>
-        </div>
-        <div className="tile is-parent">
-          <div className="tile is-child box">
-            <img src={yellowCity} alt="" className={styles.image} />
-          </div>
-        </div>
-      </div>
-      <div className="tile is-parent">
-        <div className="tile is-child box">
-          <img src={yellowCity} alt="" className={styles.image} />
-        </div>
-      </div>
-    </div>
+        ))
+      )}
+    </GalleryTemple>
   );
 };
 
