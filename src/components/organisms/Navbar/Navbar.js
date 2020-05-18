@@ -22,22 +22,28 @@ const Navbar = () => {
         <span aria-hidden="true" />
         <span aria-hidden="true" />
       </div>
-
       <div id="navbarBasicExample" className="navbar-menu">
-        <div className="navbar-start">
-          <NavLink className="navbar-item" exact to="/">
-            <span className="icon">
-              <FontAwesomeIcon icon={faImages} />
-            </span>
-            Gallery
-          </NavLink>
-
-          <NavLink className="navbar-item" to="/favourites">
-            <span className="icon">
-              <FontAwesomeIcon icon={faHeart} />
-            </span>
-            Favourites
-          </NavLink>
+        <div className="navbar-end">
+          <div className="navbar-item">
+            <div className="buttons">
+              <NavLink exact to="/">
+                <button type="button" className="button is-warning">
+                <span className="icon">
+                <FontAwesomeIcon icon={faImages} />
+                </span>
+                <strong>Gallery</strong>
+                </button>
+              </NavLink>
+              <NavLink to="/favourites">
+                <button type="button" className="button is-success">
+                <span className="icon">
+                <FontAwesomeIcon icon={faHeart} />
+                </span>
+                <strong>Favourties</strong>
+                </button>
+              </NavLink>
+            </div>
+          </div>
         </div>
       </div>
     </nav>
