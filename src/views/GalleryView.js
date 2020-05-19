@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import cx from 'classnames';
 import { fetchData } from '../api/api';
 import GalleryTemple from '../template/GalleryTemplate';
 import PhotoItem from '../components/molecules/PhotoItem/PhotoItem';
