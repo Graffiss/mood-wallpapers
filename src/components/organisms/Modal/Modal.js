@@ -7,7 +7,7 @@ const Modal = ({ image, desc, modalOpen, handleModal }) => {
     <div className={`modal ${modalOpen && 'is-active'}`}>
       <div className="modal-background" />
       <div className="modal-content">
-        <div className={cx(styles.wrapper, 'container box')}>
+        <div className={cx(styles.wrapper, 'container')}>
           <img src={image} alt={desc} className={styles.image} />
         </div>
       </div>

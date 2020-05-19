@@ -1,16 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import styles from './PhotoItem.module.scss';
 import Modal from '../../organisms/Modal/Modal';
+import AppContext from '../../../context';
 
 const PhotoItem = ({ author, image, desc }) => {
+  const context = useContext(AppContext);
+  const { addToFav, removeFromFav } = context;
   const [favourite, setFavourite] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
 
   const handleClick = () => {
     setFavourite(!favourite);
+
+    favourite ? removeFromFav() : addToFav();
   };
 
   const handleModal = () => {

@@ -10,6 +10,7 @@ const GalleryView = () => {
   useEffect(() => {
     fetchData(setPhotos);
   }, []);
+
   return (
     <GalleryTemple>
       {photos.length === 0 ? (
