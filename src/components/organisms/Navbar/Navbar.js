@@ -28,18 +28,19 @@ const Navbar = () => {
             <div className="buttons">
               <NavLink exact to="/">
                 <button type="button" className="button is-warning">
-                <span className="icon">
-                <FontAwesomeIcon icon={faImages} />
-                </span>
-                <strong>Gallery</strong>
+                  <span className="icon">
+                    <FontAwesomeIcon icon={faImages} />
+                  </span>
+                  <strong>Gallery</strong>
                 </button>
               </NavLink>
               <NavLink to="/favourites">
                 <button type="button" className="button is-success">
-                <span className="icon">
-                <FontAwesomeIcon icon={faHeart} />
-                </span>
-                <strong>Favourties</strong>
+                  <span className="icon">
+                    <FontAwesomeIcon icon={faHeart} />
+                  </span>
+
+                  <strong>Favourties</strong>
                 </button>
               </NavLink>
             </div>

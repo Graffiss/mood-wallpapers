@@ -19,6 +19,7 @@ const GalleryView = () => {
         photos.map((photo) => (
           <div className={`div${photos.indexOf(photo)}`}>
             <PhotoItem
+              photo={photo}
               image={photo.urls.regular}
               desc={photo.alt_description}
               author={photo.user.name}

@@ -8,9 +8,8 @@ import AppContext from './context';
 const App = () => {
   const [favourites, setFavourites] = useState([]);
 
-  const addToFav = (photo, searchedBy) => {
-    const favPhoto = { ...photo, searchedBy };
-    setFavourites([...favourites, favPhoto]);
+  const addToFav = (photo) => {
+    setFavourites([...favourites, photo]);
   };
 
   const removeFromFav = (photo) => {

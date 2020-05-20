@@ -6,16 +6,15 @@ import styles from './PhotoItem.module.scss';
 import Modal from '../../organisms/Modal/Modal';
 import AppContext from '../../../context';
 
-const PhotoItem = ({ author, image, desc }) => {
+const PhotoItem = ({ author, image, desc, photo }) => {
   const context = useContext(AppContext);
   const { addToFav, removeFromFav } = context;
   const [favourite, setFavourite] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
 
-  const handleClick = () => {
+  const handleClick = (photo) => {
     setFavourite(!favourite);
-
-    favourite ? removeFromFav() : addToFav();
+    favourite ? removeFromFav(photo) : addToFav(photo);
   };
 
   const handleModal = () => {
@@ -34,7 +33,7 @@ const PhotoItem = ({ author, image, desc }) => {
           <button
             type="button"
             className={`button ${favourite ? 'is-danger' : 'is-white'}`}
-            onClick={handleClick}
+            onClick={() => handleClick(photo)}
           >
             <span className="icon">
               <FontAwesomeIcon icon={faHeart} />
