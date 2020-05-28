@@ -18,6 +18,7 @@ const FavouritesView = () => {
               image={photo.urls.regular}
               desc={photo.alt_description}
               author={photo.user.name}
+              photo={photo}
             />
           </div>
         ))

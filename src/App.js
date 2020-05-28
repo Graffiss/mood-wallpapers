@@ -12,8 +12,8 @@ const App = () => {
     setFavourites([...favourites, photo]);
   };
 
-  const removeFromFav = (photo) => {
-    const filteredFavs = favourites.filter((fav) => fav.id !== photo.id);
+  const removeFromFav = (id) => {
+    const filteredFavs = favourites.filter((fav) => fav.id !== id);
     setFavourites(filteredFavs);
   };
 
