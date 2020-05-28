@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImages, faHeart } from '@fortawesome/free-solid-svg-icons';
 import styles from './Navbar.module.scss';
 import AppContext from '../../../context';
+import Geolocation from '../../molecules/Geolocation/Geolocation';
 
 const Navbar = () => {
   const context = useContext(AppContext);
@@ -27,6 +28,9 @@ const Navbar = () => {
         <span aria-hidden="true" />
         <span aria-hidden="true" />
         <span aria-hidden="true" />
+      </div>
+      <div className="navbar-item">
+        <Geolocation />
       </div>
       <div id="navbarBasicExample" className="navbar-menu">
         <div className="navbar-end">
