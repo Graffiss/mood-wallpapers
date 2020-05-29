@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { fetchData } from '../api/api';
+import { fetchData } from '../api/unsplashApi';
 import GalleryTemple from '../template/GalleryTemplate';
 import PhotoItem from '../components/molecules/PhotoItem/PhotoItem';
 import './styles.css';

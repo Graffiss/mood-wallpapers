@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { fetchData } from '../../../api/geolocationApi';
+import { fetchWeather } from '../../../api/darkSkyApi';
 
 const Geolocation = () => {
   const [position, setPosition] = useState({});
   const [error, setError] = useState(null);
+  const [city, setCity] = useState([]);
+  const [weather, setWeather] = useState([]);
 
   const onChange = ({ coords }) => {
     setPosition({
@@ -23,10 +27,19 @@ const Geolocation = () => {
     const watcher = geo.getCurrentPosition(onChange, onError);
     return () => geo.clearWatch(watcher);
   }, []);
+
+  useEffect(() => {
+    fetchData(setCity);
+  }, []);
+
+  useEffect(() => {
+    fetchWeather(setWeather);
+  }, []);
+
   return (
     <div>
       <p>
-        It seems it's {'sunny'} in Latitude: {position.latitude} and Longitude: {position.longitude}
+        We have a {weather} weather in {city}
       </p>
     </div>
   );
