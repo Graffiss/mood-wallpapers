@@ -4,10 +4,6 @@ import GalleryTemple from '../template/GalleryTemplate';
 import PhotoItem from '../components/molecules/PhotoItem/PhotoItem';
 import './styles.css';
 
-/* const GEO_ACC_KEY = 'AIzaSyD-HzdUqZa-P03-bh64fg49BmjBDcHKvHc';
-const WEATHER_ACC_KEY = 'e384569e4978ee62da3ec0acf48e4473';
-const UNSPLASH_ACC_KEY = 'c7FCt4V8eUBZWG7oYuMcEBh2vhIu4Ccv8W5sFWx-aik'; */
-
 const GalleryView = () => {
   const [position, setPosition] = useState({ latitude: '50.049683', longitude: '19.944544' });
   const [error, setError] = useState(null);
