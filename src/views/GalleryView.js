@@ -3,6 +3,7 @@ import axios from 'axios';
 import GalleryTemple from '../template/GalleryTemplate';
 import PhotoItem from '../components/molecules/PhotoItem/PhotoItem';
 import './styles.css';
+import Loader from '../components/atoms/Loader/Loader';
 
 const GalleryView = () => {
   const [position, setPosition] = useState({ latitude: '50.049683', longitude: '19.944544' });
@@ -48,15 +49,11 @@ const GalleryView = () => {
         };
         setInfo(newInfo);
 
-        console.log('Info', info);
-
         const photosData = await axios.get(
           `https://api.unsplash.com/search/photos?query=${newInfo.weather}+${newInfo.city}&page=1&per_page=8&client_id=${process.env.REACT_APP_UNSPLASH_ACC_KEY}`,
         );
 
         setPhotos(photosData.data.results);
-        console.log('Photos data from API call:', photosData);
-        console.log('Photos:', photos);
       } catch (err) {
         console.log(err);
       }
@@ -64,8 +61,6 @@ const GalleryView = () => {
     fetchInfo();
   }, [position]);
 
-  console.log('Info outside axios get', info);
-  console.log('photos outside axios get', photos);
   return (
     <>
       <p>
@@ -73,7 +68,7 @@ const GalleryView = () => {
       </p>
       <GalleryTemple>
         {photos.length === 0 ? (
-          <p>Loading data from server...</p>
+          <Loader />
         ) : (
           photos.map((photo) => (
             <div className={`div${photos.indexOf(photo)}`}>
