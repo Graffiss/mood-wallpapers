@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { fetchData } from '../../../api/geolocationApi';
+/* mport React, { useEffect, useState } from 'react';
+import { fetchGeolocation } from '../../../api/geolocationApi';
 import { fetchWeather } from '../../../api/darkSkyApi';
 
 const Geolocation = () => {
@@ -29,7 +29,7 @@ const Geolocation = () => {
   }, []);
 
   useEffect(() => {
-    fetchData(setCity);
+    fetchGeolocation(setCity);
   }, []);
 
   useEffect(() => {
@@ -45,4 +45,4 @@ const Geolocation = () => {
   );
 };
 
-export default Geolocation;
+export default Geolocation; */

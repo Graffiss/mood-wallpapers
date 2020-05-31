@@ -29,9 +29,7 @@ const Navbar = () => {
         <span aria-hidden="true" />
         <span aria-hidden="true" />
       </div>
-      <div className="navbar-item">
-        <Geolocation />
-      </div>
+      <div className="navbar-item">{/* <Geolocation /> */}</div>
       <div id="navbarBasicExample" className="navbar-menu">
         <div className="navbar-end">
           <div className="navbar-item">
