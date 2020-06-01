@@ -1,59 +1,64 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import cx from 'classnames';
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImages, faHeart } from '@fortawesome/free-solid-svg-icons';
 import styles from './Navbar.module.scss';
 import AppContext from '../../../context';
+import SearchBar from '../../atoms/SearchBar/SearchBar';
 
 const Navbar = () => {
+  const [toggleBurger, setToggleBurger] = useState(false);
   const context = useContext(AppContext);
   const { favourites } = context;
+
+  const handleBurger = () => {
+    setToggleBurger(!toggleBurger);
+  };
 
   return (
     <nav className="navbar is-warning is-spaced" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
         <NavLink className="navbar-item" exact to="/">
+          <span className="icon">
+            <FontAwesomeIcon icon={faImages} />
+          </span>
           <h5 className="title is-5">Mood Wallpapers</h5>
         </NavLink>
 
-        <button
-          type="button"
-          className="navbar-burger burger"
+        <a
+          role="button"
+          className={toggleBurger ? 'navbar-burger burger is-active' : 'navbar-burger burger'}
           aria-label="menu"
           aria-expanded="false"
           data-target="navbarBasicExample"
-        />
-        <span aria-hidden="true" />
-        <span aria-hidden="true" />
-        <span aria-hidden="true" />
+          onClick={handleBurger}
+        >
+          <span aria-hidden="true" />
+          <span aria-hidden="true" />
+          <span aria-hidden="true" />
+        </a>
       </div>
-      <div id="navbarBasicExample" className="navbar-menu">
+      <div
+        id="navbarBasicExample"
+        className={toggleBurger ? 'navbar-menu is-active' : 'navbar-menu'}
+      >
         <div className="navbar-end">
           <div className="navbar-item">
-            <div className="buttons">
-              <NavLink exact to="/">
-                <button type="button" className="button is-warning">
-                  <span className="icon">
-                    <FontAwesomeIcon icon={faImages} />
-                  </span>
-                  <strong>Gallery</strong>
-                </button>
-              </NavLink>
-              <NavLink to="/favourites">
-                <button type="button" className={cx(styles.favButton, 'button is-success')}>
-                  {favourites.length > 0 && (
-                    <span className={styles.badge}>{favourites.length}</span>
-                  )}
-                  <span className="icon">
-                    <FontAwesomeIcon icon={faHeart} />
-                  </span>
-
-                  <strong>Favourties</strong>
-                </button>
-              </NavLink>
-            </div>
+            <SearchBar />
           </div>
+          <NavLink to="/favourites">
+            <div className="navbar-item">
+              <button type="button" className={cx(styles.favButton, 'button is-success')}>
+                {favourites.length > 0 && <span className={styles.badge}>{favourites.length}</span>}
+                <span className="icon">
+                  <FontAwesomeIcon icon={faHeart} />
+                </span>
+
+                <strong>Favourties</strong>
+              </button>
+            </div>
+          </NavLink>
         </div>
       </div>
     </nav>

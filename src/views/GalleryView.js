@@ -71,7 +71,7 @@ const GalleryView = () => {
           <Loader />
         ) : (
           photos.map((photo) => (
-            <div className={`div${photos.indexOf(photo)}`}>
+            <div key={photo.id} className={`div${photos.indexOf(photo)}`}>
               <PhotoItem
                 photo={photo}
                 image={photo.urls.regular}
