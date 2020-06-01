@@ -13,12 +13,13 @@ const FavouritesView = () => {
         <p>Add photos to favourites list</p>
       ) : (
         favourites.map((photo) => (
-          <div>
+          <div key={photo.id}>
             <PhotoItem
               image={photo.urls.regular}
               desc={photo.alt_description}
               author={photo.user.name}
               photo={photo}
+              keywords={photo.keywords}
             />
           </div>
         ))

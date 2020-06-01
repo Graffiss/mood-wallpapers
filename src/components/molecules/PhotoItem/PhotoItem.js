@@ -6,14 +6,14 @@ import styles from './PhotoItem.module.scss';
 import Modal from '../../organisms/Modal/Modal';
 import AppContext from '../../../context/context';
 
-const PhotoItem = ({ author, image, desc, photo }) => {
+const PhotoItem = ({ author, image, desc, photo, keywords }) => {
   const context = useContext(AppContext);
-  const { addToFav, removeFromFav, favourites } = context;
+  const { addToFav, removeFromFav, favourites, query } = context;
   const [favourite, setFavourite] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
 
   const handleClick = (photo) => {
-    favourite ? removeFromFav(photo.id) : addToFav(photo);
+    favourite ? removeFromFav(photo.id) : addToFav(photo, query);
   };
 
   useEffect(() => {
@@ -45,6 +45,7 @@ const PhotoItem = ({ author, image, desc, photo }) => {
           </button>
         </div>
       </div>
+      {keywords && <span className="tag is-info">{keywords}</span>}
       {modalOpen && (
         <Modal image={image} desc={desc} modalOpen={modalOpen} handleModal={handleModal} />
       )}

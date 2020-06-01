@@ -15,9 +15,7 @@ const GlobalState = ({ children }) => {
       const photosData = await axios.get(
         `https://api.unsplash.com/search/photos?query=${query}&page=1&per_page=8&client_id=${process.env.REACT_APP_UNSPLASH_ACC_KEY}`,
       );
-      console.log(photosData.data.results);
       setPhotos(photosData.data.results);
-      setQuery('');
     }
   };
 
@@ -59,8 +57,11 @@ const GlobalState = ({ children }) => {
         };
         setInfo(newInfo);
 
+        const newQuery = `${newInfo.weather} ${newInfo.city}`;
+        setQuery(newQuery);
+
         const photosData = await axios.get(
-          `https://api.unsplash.com/search/photos?query=${newInfo.weather}+${newInfo.city}&page=1&per_page=8&client_id=${process.env.REACT_APP_UNSPLASH_ACC_KEY}`,
+          `https://api.unsplash.com/search/photos?query=${newQuery}&page=1&per_page=8&client_id=${process.env.REACT_APP_UNSPLASH_ACC_KEY}`,
         );
 
         setPhotos(photosData.data.results);
@@ -71,8 +72,9 @@ const GlobalState = ({ children }) => {
     fetchInfo();
   }, [position]);
 
-  const addToFav = (photo) => {
-    setFavourites([...favourites, photo]);
+  const addToFav = (photo, keywords) => {
+    const favPhoto = { ...photo, keywords };
+    setFavourites([...favourites, favPhoto]);
   };
 
   const removeFromFav = (id) => {
