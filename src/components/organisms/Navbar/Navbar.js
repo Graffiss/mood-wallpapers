@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImages, faHeart } from '@fortawesome/free-solid-svg-icons';
 import styles from './Navbar.module.scss';
-import AppContext from '../../../context';
+import AppContext from '../../../context/context';
 import SearchBar from '../../atoms/SearchBar/SearchBar';
 
 const Navbar = () => {

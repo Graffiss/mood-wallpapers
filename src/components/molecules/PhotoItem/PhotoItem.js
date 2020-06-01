@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import styles from './PhotoItem.module.scss';
 import Modal from '../../organisms/Modal/Modal';
-import AppContext from '../../../context';
+import AppContext from '../../../context/context';
 
 const PhotoItem = ({ author, image, desc, photo }) => {
   const context = useContext(AppContext);

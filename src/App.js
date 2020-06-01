@@ -1,40 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import MainTemplate from './template/MainTemplate';
 import GalleryView from './views/GalleryView';
 import FavouritesView from './views/FavouritesView';
-import AppContext from './context';
+import GlobalState from './context/GlobalState';
 
-const App = () => {
-  const [favourites, setFavourites] = useState([]);
-
-  const addToFav = (photo) => {
-    setFavourites([...favourites, photo]);
-  };
-
-  const removeFromFav = (id) => {
-    const filteredFavs = favourites.filter((fav) => fav.id !== id);
-    setFavourites(filteredFavs);
-  };
-
-  const context = {
-    favourites,
-    addToFav,
-    removeFromFav,
-  };
-
-  return (
+const App = () => (
+  <GlobalState>
     <BrowserRouter>
-      <AppContext.Provider value={context}>
-        <MainTemplate>
-          <Switch>
-            <Route exact path="/" component={GalleryView} />
-            <Route path="/favourites" component={FavouritesView} />
-          </Switch>
-        </MainTemplate>
-      </AppContext.Provider>
+      <MainTemplate>
+        <Switch>
+          <Route exact path="/" component={GalleryView} />
+          <Route path="/favourites" component={FavouritesView} />
+        </Switch>
+      </MainTemplate>
     </BrowserRouter>
-  );
-};
+  </GlobalState>
+);
 
 export default App;

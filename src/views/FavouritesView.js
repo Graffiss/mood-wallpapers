@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import AppContext from '../context';
+import AppContext from '../context/context';
 import PhotoItem from '../components/molecules/PhotoItem/PhotoItem';
 import FavouritesTemplate from '../template/FavouritesTemplate';
 
