@@ -4,6 +4,7 @@ import PhotoItem from '../components/molecules/PhotoItem/PhotoItem';
 import './styles.css';
 import Loader from '../components/atoms/Loader/Loader';
 import AppContext from '../context/context';
+import Paragraph from '../components/atoms/Paragraph/Paragraph';
 
 const GalleryView = () => {
   const context = useContext(AppContext);
@@ -11,9 +12,9 @@ const GalleryView = () => {
 
   return (
     <>
-      <p>
+      <Paragraph>
         The weather in {info.city} is {info.weather}
-      </p>
+      </Paragraph>
       <GalleryTemple>
         {photos.length === 0 ? (
           <Loader />

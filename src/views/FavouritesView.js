@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import AppContext from '../context/context';
 import PhotoItem from '../components/molecules/PhotoItem/PhotoItem';
 import FavouritesTemplate from '../template/FavouritesTemplate';
+import Paragraph from '../components/atoms/Paragraph/Paragraph';
 
 const FavouritesView = () => {
   const context = useContext(AppContext);
@@ -10,7 +11,7 @@ const FavouritesView = () => {
   return (
     <FavouritesTemplate>
       {favourites.length === 0 ? (
-        <p>Add photos to favourites list</p>
+        <Paragraph>Add photos to favourites list</Paragraph>
       ) : (
         favourites.map((photo) => (
           <div key={photo.id}>

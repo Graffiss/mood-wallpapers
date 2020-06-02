@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import AppContext from './context';
 
 const GlobalState = ({ children }) => {
-  const [favourites, setFavourites] = useState([]);
+  const initialFavourites = JSON.parse(window.localStorage.getItem('favourites')) || [];
+  const [favourites, setFavourites] = useState(initialFavourites);
   const [position, setPosition] = useState({ latitude: '50.049683', longitude: '19.944544' });
   const [error, setError] = useState(null);
   const [info, setInfo] = useState({ city: 'krakow', weather: 'sunny' });
   const [photos, setPhotos] = useState([]);
   const [query, setQuery] = useState('');
+
+  useEffect(() => {
+    window.localStorage.setItem('favourites', JSON.stringify(favourites));
+  }, [favourites]);
 
   const search = async (e) => {
     if (e.key === 'Enter') {
@@ -25,8 +31,8 @@ const GlobalState = ({ children }) => {
       longitude: coords.longitude,
     });
   };
-  const onError = (error) => {
-    setError(error.message);
+  const onError = (err) => {
+    setError(err.message);
   };
 
   useEffect(() => {
@@ -35,8 +41,7 @@ const GlobalState = ({ children }) => {
       setError('Geolocation is not supported');
       return;
     }
-    const watcher = geo.getCurrentPosition(onChange, onError);
-    return () => geo.clearWatch(watcher);
+    geo.getCurrentPosition(onChange, onError);
   }, []);
 
   useEffect(() => {
@@ -66,7 +71,7 @@ const GlobalState = ({ children }) => {
 
         setPhotos(photosData.data.results);
       } catch (err) {
-        console.log(err);
+        setError(err);
       }
     };
     fetchInfo();
@@ -91,9 +96,14 @@ const GlobalState = ({ children }) => {
     query,
     setQuery,
     search,
+    error,
   };
 
   return <AppContext.Provider value={context}>{children}</AppContext.Provider>;
+};
+
+GlobalState.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export default GlobalState;

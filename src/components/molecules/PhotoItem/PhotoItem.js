@@ -56,7 +56,17 @@ const PhotoItem = ({ author, image, desc, photo, keywords }) => {
 PhotoItem.propTypes = {
   image: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
-  desc: PropTypes.string.isRequired,
+  desc: PropTypes.string,
+  photo: PropTypes.shape({
+    id: PropTypes.string,
+    alt_description: PropTypes.string,
+  }).isRequired,
+  keywords: PropTypes.string,
+};
+
+PhotoItem.defaultProps = {
+  desc: '',
+  keywords: '',
 };
 
 export default PhotoItem;

@@ -13,6 +13,11 @@
   object-position: center;
   transition: 0.5s ease;
   backface-visibility: hidden;
+
+  @media screen and (max-device-width: 768px) {
+    padding: 5px 0;
+    padding-top: 5px;
+  }
 }
 
 .middle {

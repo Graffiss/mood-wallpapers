@@ -6,4 +6,10 @@
   grid-row-gap: 10px;
   height: 100vh;
   padding: 20px;
+
+  @media screen and (max-device-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20px;
+  }
 }
